@@ -151,6 +151,18 @@ header.site-header {
   color: var(--ink-faint);
   letter-spacing: 0.03em;
 }
+.brand-logo {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+.footer-brand .brand.footer-brand-link {
+  background: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  display: inline-flex;
+}
+.footer-brand .brand.footer-brand-link .brand-logo { height: 32px; }
 
 nav.primary-nav { display: flex; align-items: center; gap: 30px; }
 nav.primary-nav a {
