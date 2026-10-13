@@ -82,4 +82,31 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  /* ---------- Contact Us popup modal ---------- */
+  var modal = document.getElementById("contactModal");
+  if (modal) {
+    var openModal = function (e) {
+      if (e) e.preventDefault();
+      modal.hidden = false;
+      document.body.classList.add("modal-open");
+      var firstField = modal.querySelector("#name");
+      if (firstField) firstField.focus();
+    };
+    var closeModal = function () {
+      modal.hidden = true;
+      document.body.classList.remove("modal-open");
+    };
+    document.querySelectorAll("[data-open-contact]").forEach(function (trigger) {
+      trigger.addEventListener("click", openModal);
+    });
+    var closeBtn = modal.querySelector(".modal-close");
+    if (closeBtn) closeBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.hidden) closeModal();
+    });
+  }
 });
