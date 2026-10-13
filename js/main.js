@@ -1,4 +1,4 @@
-// IRSPL — shared site behavior: mobile nav, animated stat counters, mailto contact form
+// IRSPL — shared site behavior: mobile nav, animated stat counters, contact form submission
 
 document.addEventListener("DOMContentLoaded", function () {
   /* ---------- Mobile nav toggle ---------- */
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  /* ---------- Mailto contact form ---------- */
+  /* ---------- Contact form submission (delivers straight to inbox via FormSubmit) ---------- */
   var form = document.querySelector("form.contact-form");
   if (form) {
     form.addEventListener("submit", function (e) {
@@ -68,18 +68,42 @@ document.addEventListener("DOMContentLoaded", function () {
       var email = form.querySelector("#email") ? form.querySelector("#email").value : "";
       var message = form.querySelector("#message") ? form.querySelector("#message").value : "";
       var toAddress = form.getAttribute("data-to") || "intelliqueresearchschool@gmail.com";
-
-      var subject = encodeURIComponent("Website inquiry from " + (name || "IRSPL website visitor"));
-      var body = encodeURIComponent(
-        "Name: " + name + "\nEmail: " + email + "\n\n" + message
-      );
-
-      window.location.href = "mailto:" + toAddress + "?subject=" + subject + "&body=" + body;
-
       var status = form.querySelector(".status");
-      if (status) {
-        status.textContent = "Opening your email client…";
-      }
+      var submitBtn = form.querySelector("button[type=submit]");
+
+      var data = new FormData();
+      data.append("name", name);
+      data.append("email", email);
+      data.append("message", message);
+      data.append("_subject", "Website inquiry from " + (name || "IRSPL website visitor"));
+      data.append("_captcha", "false");
+      data.append("_template", "table");
+
+      if (submitBtn) submitBtn.disabled = true;
+      if (status) status.textContent = "Sending…";
+
+      fetch("https://formsubmit.co/ajax/" + toAddress, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: data
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error("Request failed");
+          return res.json();
+        })
+        .then(function () {
+          if (status) status.textContent = "Thank you — your message has been sent. We'll be in touch soon.";
+          form.reset();
+        })
+        .catch(function () {
+          if (status) {
+            status.textContent =
+              "Something went wrong sending your message. Please email us directly at " + toAddress + ".";
+          }
+        })
+        .finally(function () {
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
   }
 
