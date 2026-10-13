@@ -21,7 +21,7 @@
       <a href="index.html" class="active">Home</a>
       <a href="leadership.html">Leadership</a>
       <a href="advisory-team.html">Advisory Team</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="#" data-open-contact>Contact Us</a>
     </nav>
     <div class="nav-cta">
       <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
@@ -181,47 +181,6 @@
   </div>
 </section>
 
-<section id="contact">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Contact</span>
-      <h2>Talk to our team</h2>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <div class="item">
-          <div class="k">Location</div>
-          <div class="v">Noida, India</div>
-        </div>
-        <div class="item">
-          <div class="k">Email</div>
-          <div class="v">intelliqueresearchschool@gmail.com</div>
-        </div>
-        <div class="item">
-          <div class="k">LinkedIn</div>
-          <div class="v"><a href="https://www.linkedin.com/company/the-research-school/" target="_blank" rel="noopener">Connect with IRSPL</a></div>
-        </div>
-      </div>
-      <form class="contact-form" data-to="intelliqueresearchschool@gmail.com">
-        <div>
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        <div>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div>
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="4" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-teal">Send Message</button>
-        <div class="status"></div>
-      </form>
-    </div>
-  </div>
-</section>
-
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
@@ -236,7 +195,7 @@
         <a href="index.html">Home</a>
         <a href="leadership.html">Leadership</a>
         <a href="advisory-team.html">Advisory Team</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="#" data-open-contact>Contact Us</a>
       </div>
       <div>
         <h4>Platforms</h4>
@@ -257,6 +216,43 @@
     </div>
   </div>
 </footer>
+
+
+<div class="modal-overlay" id="contactModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+    <button type="button" class="modal-close" aria-label="Close">&times;</button>
+    <div class="section-head">
+      <span class="eyebrow">Contact</span>
+      <h2 id="contactModalTitle">Talk to our team</h2>
+    </div>
+    <div class="contact-info">
+      <div class="item">
+        <div class="k">Location</div>
+        <div class="v">Noida, India</div>
+      </div>
+      <div class="item">
+        <div class="k">Email</div>
+        <div class="v">intelliqueresearchschool@gmail.com</div>
+      </div>
+    </div>
+    <form class="contact-form" data-to="intelliqueresearchschool@gmail.com">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-teal">Send Message</button>
+      <div class="status"></div>
+    </form>
+  </div>
+</div>
 
 <script src="js/main.js"></script>
 </body>
