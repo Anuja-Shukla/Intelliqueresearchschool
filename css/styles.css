@@ -572,7 +572,7 @@ footer.site-footer {
 .gateway-intro p { margin: 0; }
 .gateway-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 .gateway-card {
@@ -708,3 +708,10 @@ body.modal-open { overflow: hidden; }
   box-shadow: none;
   background: transparent;
 }
+
+/* third platform card: AIjuggernauts (amber) */
+.gateway-card.biz .gateway-tab { background: var(--amber); color: var(--navy-deep); }
+.gateway-card.biz .icon { background: rgba(217,142,43,0.14); color: var(--amber); }
+.gateway-card.biz .gateway-visit { color: #b06f17; }
+@media (max-width: 1000px) and (min-width: 761px) { .gateway-grid { grid-template-columns: 1fr 1fr; } }
+.pillars-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
